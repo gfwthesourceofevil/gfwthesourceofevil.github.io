@@ -2,5 +2,8 @@
 
 ***
 
-#2015-02-15
+#2015-02-25
+Use Jekyll-Bootstrap
+
+#2015-02-24
 Create blog repository
