@@ -21,11 +21,11 @@ GitHub Pages 有两种基本类型：用户/组织页面以及项目页面。这
 * 你需要创建仓库 *username.github.io* ，其中 *username* 就是你的账号名称
 * 必需使用 *master* 分支来创建和发布 GitHub Pages 页面。
 
-当你的用户/组织页面创建后，用户就可以通过 *http(s)://<username>.github.io* 来访问你的页面了。
+当你的用户/组织页面创建后，用户就可以通过 *http(s)://\<username\>.github.io* 来访问你的页面了。
 
 ### Project Pages
 
-项目页面与用户/组织页面不同，它和项目使用同一个 repository 。可以通过 *http(s)://<username>.github.io/<projectname>* （用户）或 *http(s)://<orgname>.github.io/<projectname>* （组织）来访问这个项目页面。创建项目页面对于用户和组织来说方法是一样的。
+项目页面与用户/组织页面不同，它和项目使用同一个 repository 。可以通过 *http(s)://\<username\>.github.io/\<projectname\>* （用户）或 *http(s)://\<orgname\>.github.io/\<projectname\>* （组织）来访问这个项目页面。创建项目页面对于用户和组织来说方法是一样的。
 
 项目页面与用户/组织页面基本一致，除了少许差异：
 
@@ -61,42 +61,38 @@ GitHub 提供了自动创建 GitHub Pages的工具，方便用户简单创建页
 
 ###1. 首先创建 GitHub Pages 仓库的clone：
 
-  $ git clone github.com/*user*/*repository*.git
-  # clone 项目页面仓库
-  正克隆到 '*repository*'...
-  remote: Counting objects: 3, done.
-  remote: Total 3 (delta 0), reused 0 (delta 0)
-  Unpacking objects: 100% (3/3), done.
-  检查连接... 完成。
+    $ git clone github.com/user/repository.git
+    # clone 项目页面仓库
+    正克隆到 'repository'...
+    remote: Counting objects: 3, done.
+    remote: Total 3 (delta 0), reused 0 (delta 0)
+    Unpacking objects: 100% (3/3), done.
+    检查连接... 完成。
 
-###2. 创建 *gh-pages" 分支：
+###2. 创建 *gh-pages* 分支：
 
-  $ cd *repository*
+    $ cd repository
 
-  $ git checkout --orphan gh-pages
-  # 创建一个没有父分支的 *gh-pages* 分支
-  切换到一个新分支 'gh-pages'
+    $ git checkout --orphan gh-pages
+    # 创建一个没有父分支的 gh-pages 分支
+    切换到一个新分支 'gh-pages'
 
-  $ git rm -rf .
-  # 将旧分支的内容都删除掉
-  rm 'README.md'
+    $ git rm -rf .
+    # 将旧分支的内容都删除掉
+    rm 'README.md'
 
 ###3. 现在添加内容并 push 到 GitHub
 
-  $ echo "My Test GitHub Page" > index.html
-  $ git add index.html
-  $ git commit -a -m "my first page commit"
-  $ git push origin gh-pages
+    $ echo "My Test GitHub Page" > index.html
+    $ git add index.html
+    $ git commit -a -m "my first page commit"
+    $ git push origin gh-pages
 
 你现在可以在网上浏览你的 GitHub Pages http://*user*.github.com/*repository* 了。
 
 # Jekyll
 
-Jekyll 是 GitHub Pages 所使用的静态页面生成工具，具体信息可以参看[维基百科条目][5]及 [Jekyll官网][6]。
-
-Jekyll 支持 Markdown (或 Textile) 配合 Liquid 编写的文档，将其翻译为静态页面并发布到网站。具体使用可查阅[官方文档][7]，或者国人翻译的[中文文档][8]，里面介绍的很详细。
-
-我们要做的就是编写符合 Jekyll 规范的文档，将之上传到 GitHub Pages repository，GitHub 会自动将文档解析并发布出去。现在有很多好的博客模板，我们不需要再从零开始构建博客，可以复用现有模板。
+Jekyll 是 GitHub Pages 所使用的静态页面生成工具，具体介绍可以参看[维基百科条目][5]及 [Jekyll官网][6]。Jekyll 支持 Markdown (或 Textile) 配合 Liquid 编写的文档，将其解析为静态页面并发布到网站。具体使用可查阅[官方文档][7]，或者国人翻译的[中文文档][8]，里面介绍的很详细。我们要做的就是编写符合 Jekyll 规范的文档，将之上传到 GitHub Pages repository，GitHub 会自动将文档解析并发布出去。现在有很多好的博客模板，我们不需要再从零开始构建博客，可以复用现有模板。
 
 # Jekyll Bootstrap
 
@@ -104,23 +100,56 @@ Jekyll Bootstrap 给用户创建 Jekyll 网站提供了模板，用户可以很�
 
 ###1. 首先将 jekyll bootstrap 代码 clone 到本地：
 
-  $ git clone https://github.com/plusjade/jekyll-bootstrap.git username.github.io
+    $ git clone https://github.com/plusjade/jekyll-bootstrap.git username.github.io
 
-###2. 切换代码仓库
+###2. 切换到我们自己的 GitHub Pages 代码仓库：
 
-  $ cd username.github.io
-  $ git remote set-url origin git@github.com:username/username.github.com.git
+    $ cd username.github.io
+    $ git remote set-url origin git@github.com:username/username.github.com.git
 
-###3. 在本地安装jekyll后，可以先本地预览：
+###3. 在部署博客到 GitHub Pages 上之前，可以先在本地安装jekyll，预览博客的显示效果：
 
-  $ jekyll serve -w
-  在浏览器打开url ： http://localhost:4000
+    $ sudo gem install jekyll
+    $ jekyll serve -w
 
-###4. 修改内容后，上传 GitHub
+jekyll 的安装可以参看[Using Jekyll with Pages][10]：
 
-  $ git add .
-  $ git commit -m "blog content"
-  $ git push origin master
+在浏览器打开url ： [http://localhost:4000](http://localhost:4000 localhost:4000)
+
+###4. 创建 Post
+
+可以通过 rake 命令来创建 post：
+
+    $ rake post title="My first post"
+
+rake 命令会自动创建符合 jekyll post 名称规范并具有 YAML Front Matter 的文件。
+
+###5. 创建 Page
+
+同样使用 rake：
+
+    $ rake page name="about.md"
+    # 创建 ./about.md 文件
+
+也可以创建嵌套的页面：
+
+    $ rake page name="pages/about.md"
+    # 创建 ./pages/about.md 文件
+
+或者创建有 "pretty" 路径的页面：
+
+    $ rake page name="pages/about"
+    # 创建 ./pages/about/index.html 文件
+
+rake 会自动创建拥有符合 jekyll 命名规范且拥有 YAML Front Matter 的页面文件。
+
+###6. 修改内容后，上传 GitHub
+
+    $ git add .
+    $ git commit -m "blog content"
+    $ git push origin master
+
+提交 GitHub 后， GitHub 会自动重新解析 GitHub Pages 仓库中的文档，重新部署静态页面。
 
 [1]: https://help.github.com/articles/user-organization-and-project-pages/ "User organization and project pages"
 
@@ -139,3 +168,5 @@ Jekyll Bootstrap 给用户创建 Jekyll 网站提供了模板，用户可以很�
 [8]: http://jekyllcn.com/docs/home/ "Jekyll 文档"
 
 [9]: https://github.com/xcatliu/jekyllcn
+
+[10]: https://help.github.com/articles/using-jekyll-with-pages/ "Using Jekyll with Pages"
